@@ -3,13 +3,13 @@ services:
   app:
     build: .
     ports:
-      - "8080:80"
+      - "8022:80"
     environment:
       - APP_ENV=local
       - APP_KEY=${APP_KEY}
-      - DB_HOST=db
-      - DB_DATABASE=${DB_DATABASE}
-      - DB_USERNAME=${DB_USERNAME}
+      - DB_HOST= {127.0.0.1}
+      - DB_DATABASE=${politech}
+      - DB_USERNAME=${root}
       - DB_PASSWORD=${DB_PASSWORD}
     depends_on:
       - db
