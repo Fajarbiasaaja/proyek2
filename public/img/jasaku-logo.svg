@@ -1,0 +1,67 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#E3F2FD" stroke="#0066CC" stroke-width="2"/>
+  
+  <!-- Snowflake center -->
+  <g transform="translate(100, 100)">
+    <!-- Snowflake -->
+    <circle cx="0" cy="0" r="25" fill="#00BED4" opacity="0.2"/>
+    
+    <!-- Snowflake star points -->
+    <g stroke="#00BED4" stroke-width="3" stroke-linecap="round">
+      <!-- Vertical lines -->
+      <line x1="0" y1="-35" x2="0" y2="35"/>
+      <line x1="-35" y1="0" x2="35" y2="0"/>
+      
+      <!-- Diagonal lines -->
+      <line x1="-24.7" y1="-24.7" x2="24.7" y2="24.7"/>
+      <line x1="24.7" y1="-24.7" x2="-24.7" y2="24.7"/>
+    </g>
+    
+    <!-- Snowflake branches -->
+    <g stroke="#00BED4" stroke-width="2" stroke-linecap="round">
+      <line x1="0" y1="-35" x2="-8" y2="-28"/>
+      <line x1="0" y1="-35" x2="8" y2="-28"/>
+      
+      <line x1="35" y1="0" x2="28" y2="-8"/>
+      <line x1="35" y1="0" x2="28" y2="8"/>
+      
+      <line x1="0" y1="35" x2="-8" y2="28"/>
+      <line x1="0" y1="35" x2="8" y2="28"/>
+      
+      <line x1="-35" y1="0" x2="-28" y2="-8"/>
+      <line x1="-35" y1="0" x2="-28" y2="8"/>
+      
+      <line x1="24.7" y1="-24.7" x2="20" y2="-32"/>
+      <line x1="24.7" y1="-24.7" x2="32" y2="-20"/>
+      
+      <line x1="24.7" y1="24.7" x2="20" y2="32"/>
+      <line x1="24.7" y1="24.7" x2="32" y2="20"/>
+      
+      <line x1="-24.7" y1="24.7" x2="-20" y2="32"/>
+      <line x1="-24.7" y1="24.7" x2="-32" y2="20"/>
+      
+      <line x1="-24.7" y1="-24.7" x2="-20" y2="-32"/>
+      <line x1="-24.7" y1="-24.7" x2="-32" y2="-20"/>
+    </g>
+  </g>
+  
+  <!-- Left Wrench -->
+  <g transform="translate(50, 70)">
+    <path d="M 0 15 Q 5 10 10 8 L 25 0 L 25 8 Q 10 12 0 25 Z" 
+          fill="none" stroke="#0066CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="10" cy="16" r="8" fill="none" stroke="#0066CC" stroke-width="3"/>
+  </g>
+  
+  <!-- Right Wrench (mirrored) -->
+  <g transform="translate(150, 70) scale(-1,1)">
+    <path d="M 0 15 Q 5 10 10 8 L 25 0 L 25 8 Q 10 12 0 25 Z" 
+          fill="none" stroke="#0066CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="10" cy="16" r="8" fill="none" stroke="#0066CC" stroke-width="3"/>
+  </g>
+  
+  <!-- Gear background suggestion -->
+  <g transform="translate(100, 100)" opacity="0.1">
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#0066CC" stroke-width="2"/>
+  </g>
+</svg>
