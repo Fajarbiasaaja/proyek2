@@ -1,0 +1,47 @@
+#! app-deployment.yaml
+# Generated code, do not edit
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: app
+    namespace: proyek2
+    labels:
+        com.docker.compose.project: proyek2
+        com.docker.compose.service: app
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            com.docker.compose.project: proyek2
+            com.docker.compose.service: app
+    strategy:
+        type: Recreate
+    template:
+        metadata:
+            labels:
+                com.docker.compose.project: proyek2
+                com.docker.compose.service: app
+                com.docker.compose.network.default: "true"
+        spec:
+            containers:
+                - name: app
+                  image: proyek2-app
+                  imagePullPolicy: IfNotPresent
+                  env:
+                    - name: APP_ENV
+                      value: "local"
+                    - name: APP_KEY
+                      value: "base64:GHyn4J4LOm6nYnfl/Pbd6dt94YbZmfbhZritFmzzqaQ="
+                    - name: DB_DATABASE
+                      value: "politech"
+                    - name: DB_HOST
+                      value: "db"
+                    - name: DB_PASSWORD
+                      value: "root_password_123"
+                    - name: DB_USERNAME
+                      value: "root"
+                  ports:
+                    - name: app-80
+                      containerPort: 80
+                    - name: app-9000
+                      containerPort: 9000

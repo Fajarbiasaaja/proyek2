@@ -1,0 +1,8 @@
+#! 0-proyek2-namespace.yaml
+# Generated code, do not edit
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: proyek2
+    labels:
+        com.docker.compose.project: proyek2
