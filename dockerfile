@@ -1,5 +1,5 @@
 # Dockerfile
-FROM php:8.3-fpm-alpine
+FROM php:8.2-fpm-alpine
 
 # Set ARG untuk build
 ARG APP_ENV=production
