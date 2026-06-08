@@ -1,6 +1,9 @@
 # Dockerfile
 FROM php:8.3-fpm-alpine
 
+# Set ARG untuk build
+ARG APP_ENV=production
+
 # Install dependencies sistem
 RUN apk add --no-cache \
     nginx \
@@ -32,11 +35,19 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
+# Copy composer files terlebih dahulu untuk better caching
+COPY composer.json composer.lock ./
+
+# Install dependencies Laravel (dengan retry)
+RUN --mount=type=cache,target=/root/.composer \
+    composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader \
+    && composer clear-cache
+
 # Copy file project
 COPY . .
 
-# Install dependencies Laravel
-RUN composer install --optimize-autoloader --no-dev
+# Create .env jika belum ada di build time
+RUN if [ ! -f .env ]; then cp .env.example .env 2>/dev/null || true; fi
 
 # Set permission
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
