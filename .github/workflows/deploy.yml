@@ -22,7 +22,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: '8.3'
           extensions: pdo, pdo_mysql, bcmath
 
       - name: Install Composer dependencies
@@ -96,7 +96,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          port: 8022
+          port: ${{ secrets.SERVER_PORT }}
           script: |
             set -e
 
@@ -106,7 +106,7 @@ jobs:
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
             # Masuk ke folder project
-            cd /home/${{ secrets.SERVER_USER }}/RPL2X-kelompok-1
+            cd /home/${{ secrets.SERVER_USER }}/DOSEN
 
             # Pull image terbaru
             docker pull ghcr.io/${{ github.repository }}:latest
@@ -116,7 +116,10 @@ jobs:
 
             # Tunggu container siap
             echo "⏳ Menunggu container ready..."
-            sleep 10
+
+            until docker compose exec -T db mysqladmin ping -h "localhost" --silent; do
+              sleep 2
+            done
 
             # Jalankan migrasi database
             docker compose exec -T app php artisan migrate --force --no-interaction
