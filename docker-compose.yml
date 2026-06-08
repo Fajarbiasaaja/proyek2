@@ -3,13 +3,13 @@ services:
   app:
     build: .
     ports:
-      - "8022:80"
+      - "8080:80"
     environment:
       - APP_ENV=local
       - APP_KEY=${APP_KEY}
-      - DB_HOST= {127.0.0.1}
-      - DB_DATABASE=${politech}
-      - DB_USERNAME=${root}
+      - DB_HOST=db
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
     depends_on:
       - db
@@ -18,9 +18,7 @@ services:
     image: mysql:8.0
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
 
